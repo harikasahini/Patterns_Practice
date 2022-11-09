@@ -1,43 +1,37 @@
 package throwsClause;
 
-public class ThrowsOverriddentest extends SuperRead{
+import java.io.IOException;
+
+public class ThrowsOverriddentest{
 	public static void main(String[] args) {
 		ThrowsOverriddentest t=new ThrowsOverriddentest();
-		t.methodOfSuperClass();
+		t.methodOfClass();
 	}
-	@Override
-    void methodOfSuperClass() throws ArrayIndexOutOfBoundsException
+	
+	
+	void methodOfClass() throws ArrayIndexOutOfBoundsException
     {
-		SuperRead r1=new SuperRead();
-		r1.methodOfSuperClass();
-        System.out.println("Unchecked exceptions can be overriden");
-        
+        System.out.println("super class method with unchecked exception");
     }
 	
 }
 
-class SuperRead
-{
-    void methodOfSuperClass() throws ArrayIndexOutOfBoundsException
-    {
-        System.out.println("super class method with unchecked exception");
-    }
-}
 
 
-class SubRead extends SuperRead
+class SubRead extends ThrowsOverriddentest
 {
     @Override
-    void methodOfSuperClass() throws NumberFormatException, NullPointerException, RuntimeException
+    void methodOfClass() throws NumberFormatException, NullPointerException, RuntimeException
     {
         System.out.println("overriding with other Unchecked Exceptions");
     }
 }
 
-class SubReadTwo extends SuperRead
+class SubReadTwo extends ThrowsOverriddentest
 {
+	//throws error
     @Override
-    void methodOfSuperClass() throws IOException
+    void methodOfClass() throws IOException
     {
         //Generated Compile time error while overriding with checked exception
     }
